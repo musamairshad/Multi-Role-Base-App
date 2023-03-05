@@ -7,6 +7,11 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  // Future<void> usamaIrshad() async {
+  //   await Future.delayed(Duration(seconds: 3));
+  //   print("delayed.");
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,7 +23,7 @@ class _LoginScreenState extends State<LoginScreen> {
           children: [
             InkWell(
               onTap: () {
-                print("Tap");
+                // usamaIrshad();
               },
               child: Container(
                 height: 50,
