@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
   static const routeName = "/login-screen";
@@ -12,6 +13,8 @@ class _LoginScreenState extends State<LoginScreen> {
   //   print("delayed.");
   // }
 
+  // Shared Prefs also waits to get desired value.
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,14 +25,35 @@ class _LoginScreenState extends State<LoginScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             InkWell(
-              onTap: () {
-                // usamaIrshad();
+              onTap: () async {
+                SharedPreferences sp = await SharedPreferences.getInstance();
+                // You store value value with respect to its key and similarly
+                // read value with respect to its key.
+                sp.setString('Name', "Usama Irshad");
+                sp.setInt("Age", 21);
+                sp.setBool('isLogin', false);
+
+                print(sp.getString('Name'));
+                print(sp.getInt('Age').toString());
+                print(sp.getBool('isLogin'));
+
+                sp.remove('Name');
+                print(sp.getString('Name'));
               },
               child: Container(
                 height: 50,
                 width: double.infinity,
+                decoration: BoxDecoration(
                 color: Colors.green,
-                child: Center(child: Text("Click")),
+                borderRadius: BorderRadius.circular(30),
+                ),
+                child: Center(
+                    child: Text(
+                  "Click",
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                )),
               ),
             )
           ],
