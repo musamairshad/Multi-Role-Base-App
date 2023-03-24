@@ -13,6 +13,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     // It runs before the state object is created.
+    // It runs before the build method.
     super.initState();
     Timer(Duration(seconds: 5), () {
       // print("In the timer.");
@@ -26,6 +27,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // It keeps building during initState(){}.
     // print("It runs after the state object is created.");
     return Scaffold(
       body: Image(
