@@ -19,10 +19,10 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       routes: {
-        HomeScreen.routeName : (ctx) => HomeScreen(),
-        LoginScreen.routeName : (ctx) => LoginScreen(),
+        HomeScreen.routeName : (ctx) => const HomeScreen(),
+        LoginScreen.routeName : (ctx) => const LoginScreen(),
       },
-      home: SplashScreen(),
+      home: const SplashScreen(),
     );
   }
 }
