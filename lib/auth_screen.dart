@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import './select_type.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 // import './home_screen.dart';
 import './student_screen.dart';
+import './teacher_screen.dart';
+import './admin_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   static const routeName = "/login-screen";
@@ -27,11 +28,21 @@ class _LoginScreenState extends State<LoginScreen> {
   final _passwordController = TextEditingController();
   final _ageController = TextEditingController();
 
+  String dropdownvalue = 'Admin';
+
+  var items = [
+    'Admin',
+    'Teacher',
+    'Student',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Sign up"),
+        title: const Text("Login", style: TextStyle(
+          fontSize: 25,
+        ),),
         centerTitle: true,
         automaticallyImplyLeading: false,
       ),
@@ -65,7 +76,22 @@ class _LoginScreenState extends State<LoginScreen> {
             const SizedBox(height: 20),
 
             // Working of this widget is in progress.....
-            const SelectType(),
+            DropdownButton(
+              icon: Icon(Icons.keyboard_arrow_down),
+              isExpanded: true,
+              items: items.map((String item) {
+                return DropdownMenuItem(
+                  child: Text(item),
+                  value: item,
+                );
+              }).toList(),
+              value: dropdownvalue,
+              onChanged: (String? newValue) {
+                setState(() {
+                  dropdownvalue = newValue!;
+                });
+              },
+            ),
             const SizedBox(height: 40),
             InkWell(
               onTap: () async {
@@ -89,22 +115,25 @@ class _LoginScreenState extends State<LoginScreen> {
                 sp.setString('Email', _emailController.text.toString());
 
                 // Different types of roles like admin, student, teacher.
-                sp.setString('userType', 'teacher');
+                sp.setString('userType', dropdownvalue);
                 sp.setString('Age', _ageController.text.toString());
                 sp.setBool('isLogin', true); // When button is pressed so
                 // user is logged in and value = true.
 
-                if(sp.getString('userType') == 'teacher'){
+                if (sp.getString('userType') == 'Teacher') {
+                  // ignore: use_build_context_synchronously
+                  Navigator.pushNamed(context, TeacherScreen.routeName);
+                } else if (sp.getString('userType') == 'Student') {
                   // ignore: use_build_context_synchronously
                   Navigator.pushNamed(context, StudentScreen.routeName);
-                } else if(sp.getString('userType') == 'student'){
-
+                } else if (sp.getString('userType') == 'Admin') {
                   // ignore: use_build_context_synchronously
-                  Navigator.pushNamed(context, StudentScreen.routeName);
-                } else{
-                  // ignore: use_build_context_synchronously
-                  Navigator.pushNamed(context, StudentScreen.routeName);
+                  Navigator.pushNamed(context, AdminScreen.routeName);
                 }
+                // else {
+                //   // ignore: use_build_context_synchronously
+                //   Navigator.pushNamed(context, StudentScreen.routeName);
+                // }
               },
               child: Container(
                 height: 50,
@@ -115,9 +144,11 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 child: const Center(
                     child: Text(
-                  "Sign up",
+                  "Login",
                   style: TextStyle(
                     color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
                   ),
                 )),
               ),
