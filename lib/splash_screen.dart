@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:async';
-import './login_screen.dart';
+import 'auth_screen.dart';
 import './home_screen.dart';
+import './student_screen.dart';
+import './teacher_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -25,15 +27,35 @@ class _SplashScreenState extends State<SplashScreen> {
     SharedPreferences sp = await SharedPreferences.getInstance();
     bool isLogin = sp.getBool('isLogin') ?? false; // getBool returns true
     // or false not null.
+    String userType = sp.getString('userType') ?? '';
 
     if (isLogin) {
-      Timer(const Duration(seconds: 5), () {
+      if(userType == 'student'){
+        Timer(const Duration(seconds: 5), () {
+        // print("In the timer.");
+        Navigator.pushNamed(
+          context,
+          StudentScreen.routeName,
+        );
+      });
+      } else if(userType == 'teacher'){
+        Timer(const Duration(seconds: 5), () {
+        // print("In the timer.");
+        Navigator.pushNamed(
+          context,
+          TeacherScreen.routeName,
+        );
+      });
+      } 
+      else{
+        Timer(const Duration(seconds: 5), () {
         // print("In the timer.");
         Navigator.pushNamed(
           context,
           HomeScreen.routeName,
         );
       });
+      }
     } else {
       Timer(const Duration(seconds: 5), () {
         // print("In the timer.");
