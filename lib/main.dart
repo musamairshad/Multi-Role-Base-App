@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:multi_role_base_app/teacher_screen.dart';
 import './home_screen.dart';
 import './splash_screen.dart';
-import './login_screen.dart';
+import 'auth_screen.dart';
+import './student_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,6 +23,8 @@ class MyApp extends StatelessWidget {
       routes: {
         HomeScreen.routeName : (ctx) => const HomeScreen(),
         LoginScreen.routeName : (ctx) => const LoginScreen(),
+        StudentScreen.routeName : (ctx) => const StudentScreen(),
+        TeacherScreen.routeName : (ctx) => const TeacherScreen(),
       },
       home: const SplashScreen(),
     );
