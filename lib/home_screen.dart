@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import './login_screen.dart';
+import 'auth_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   static const routeName = "/home-screen";
@@ -23,9 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
     SharedPreferences sp = await SharedPreferences.getInstance();
     _email = sp.getString('Email') ?? '';
     _age = sp.getString('Age') ?? '';
-    setState(() {
-      
-    });
+    setState(() {});
   }
 
   @override
@@ -46,7 +44,8 @@ class _HomeScreenState extends State<HomeScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const Text('Email'),
-                Text(_email.toString(),
+                Text(
+                  _email.toString(),
                 ),
               ],
             ),
@@ -55,7 +54,8 @@ class _HomeScreenState extends State<HomeScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const Text('Age'),
-                Text(_age.toString(),
+                Text(
+                  _age.toString(),
                 ),
               ],
             ),
