@@ -4,6 +4,7 @@ import './home_screen.dart';
 import './splash_screen.dart';
 import 'auth_screen.dart';
 import './student_screen.dart';
+import './admin_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -25,6 +26,8 @@ class MyApp extends StatelessWidget {
         LoginScreen.routeName : (ctx) => const LoginScreen(),
         StudentScreen.routeName : (ctx) => const StudentScreen(),
         TeacherScreen.routeName : (ctx) => const TeacherScreen(),
+        AdminScreen.routeName : (ctx) => const AdminScreen(),
+
       },
       home: const SplashScreen(),
     );
