@@ -5,6 +5,7 @@ import 'auth_screen.dart';
 import './home_screen.dart';
 import './student_screen.dart';
 import './teacher_screen.dart';
+import './admin_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -30,7 +31,7 @@ class _SplashScreenState extends State<SplashScreen> {
     String userType = sp.getString('userType') ?? '';
 
     if (isLogin) {
-      if(userType == 'student'){
+      if(userType == 'Student'){
         Timer(const Duration(seconds: 5), () {
         // print("In the timer.");
         Navigator.pushNamed(
@@ -38,7 +39,7 @@ class _SplashScreenState extends State<SplashScreen> {
           StudentScreen.routeName,
         );
       });
-      } else if(userType == 'teacher'){
+      } else if(userType == 'Teacher'){
         Timer(const Duration(seconds: 5), () {
         // print("In the timer.");
         Navigator.pushNamed(
@@ -46,7 +47,15 @@ class _SplashScreenState extends State<SplashScreen> {
           TeacherScreen.routeName,
         );
       });
-      } 
+      } else if(userType == 'Admin'){
+        Timer(const Duration(seconds: 5), () {
+        // print("In the timer.");
+        Navigator.pushNamed(
+          context,
+          AdminScreen.routeName,
+        );
+      });
+      }
       else{
         Timer(const Duration(seconds: 5), () {
         // print("In the timer.");
