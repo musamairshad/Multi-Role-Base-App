@@ -31,7 +31,10 @@ class _StudentScreenState extends State<StudentScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Student View'),
+        title: const Text('Student View',style: TextStyle(
+          fontSize: 25,
+        ),
+        ),
         centerTitle: true,
         automaticallyImplyLeading: false,
       ),
