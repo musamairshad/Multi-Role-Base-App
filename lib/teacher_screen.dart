@@ -31,7 +31,10 @@ class _TeacherScreenState extends State<TeacherScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Teacher View'),
+        title: const Text('Teacher View',style: TextStyle(
+          fontSize: 25,
+        ),
+        ),
         centerTitle: true,
         automaticallyImplyLeading: false,
       ),
